@@ -1,0 +1,28 @@
+p.error {
+  color: red
+}
+
+
+label {
+		display: block;
+	}
+
+.input-error {
+		border: 1px solid red;
+	}
+
+input {
+	font-size: 1em;
+	max-width: 50ch;
+}
+
+textarea {
+	font-size: 1rem;
+	width: 50ch;
+	height: 6ch;
+}
+
+
+.hidden {
+		display: none;
+}
