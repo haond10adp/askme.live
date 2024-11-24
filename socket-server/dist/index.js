@@ -54,5 +54,5 @@ io.on('connection', (socket) => {
     });
 });
 httpServer.listen(3001, () => {
-    console.log('listening on *:3000');
+    console.log('listening on *:3001');
 });
