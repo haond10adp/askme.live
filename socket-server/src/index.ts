@@ -1,17 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import { createServer } from 'node:https';
+import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 import ShortUniqueId from 'short-unique-id';
-import fs from 'node:fs';
-
-const options = {
-  key: fs.readFileSync(`${__dirname}/../../cert/key.pem`),
-  cert: fs.readFileSync(`${__dirname}/../../cert/cert.pem`),
-};
 
 const app = express();
-const httpServer = createServer(options, app);
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: '*',
@@ -63,6 +57,6 @@ io.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(3000, () => {
+httpServer.listen(3001, () => {
   console.log('listening on *:3000');
 });

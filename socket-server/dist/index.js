@@ -5,16 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const node_https_1 = require("node:https");
+const node_http_1 = require("node:http");
 const socket_io_1 = require("socket.io");
 const short_unique_id_1 = __importDefault(require("short-unique-id"));
-const node_fs_1 = __importDefault(require("node:fs"));
-const options = {
-    key: node_fs_1.default.readFileSync(`${__dirname}/../../cert/key.pem`),
-    cert: node_fs_1.default.readFileSync(`${__dirname}/../../cert/cert.pem`),
-};
 const app = (0, express_1.default)();
-const httpServer = (0, node_https_1.createServer)(options, app);
+const httpServer = (0, node_http_1.createServer)(app);
 const io = new socket_io_1.Server(httpServer, {
     cors: {
         origin: '*',
@@ -58,6 +53,6 @@ io.on('connection', (socket) => {
         }
     });
 });
-httpServer.listen(3000, () => {
+httpServer.listen(3001, () => {
     console.log('listening on *:3000');
 });
