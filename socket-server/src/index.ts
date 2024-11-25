@@ -1,11 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-import { createServer } from 'node:http';
+import { createServer } from 'node:https';
 import { Server } from 'socket.io';
 import ShortUniqueId from 'short-unique-id';
+import fs from 'node:fs';
+
+const options = {
+  key: fs.readFileSync('./../.cert/private.key'),
+  cert: fs.readFileSync('./../.cert/certificate.crt'),
+};
 
 const app = express();
-const httpServer = createServer(app);
+const httpServer = createServer(options, app);
 const io = new Server(httpServer, {
   cors: {
     origin: '*',
