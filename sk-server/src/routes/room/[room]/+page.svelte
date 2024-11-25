@@ -44,9 +44,7 @@
 			const audio = new Audio();
 			audio.srcObject = stream;
 			audio.autoplay = true;
-
-			// add the audio to peerAudio object if you want to address it for something
-			// later (volume, etc.)
+			document.body.appendChild(audio);
 		});
 	});
 </script>
