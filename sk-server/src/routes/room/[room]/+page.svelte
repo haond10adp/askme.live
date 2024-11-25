@@ -44,7 +44,6 @@
 			const audio = new Audio();
 			audio.srcObject = stream;
 			audio.autoplay = true;
-			document.body.appendChild(audio);
 		});
 	});
 </script>
