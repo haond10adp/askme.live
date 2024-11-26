@@ -32,10 +32,10 @@ const rooms = [
     },
 ];
 io.on('connection', (socket) => {
-    console.log('a user connected');
     io.emit('rooms', rooms);
     socket.on('new-room', (room) => {
         room.id = uid.rnd();
+        room.participants = [];
         rooms.push(room);
     });
     socket.on('join-room', (roomId, userName) => {
@@ -52,7 +52,7 @@ io.on('connection', (socket) => {
         socket.leave(roomId);
         const participants = (_a = rooms.find((room) => roomId == room.id)) === null || _a === void 0 ? void 0 : _a.participants;
         const index = participants === null || participants === void 0 ? void 0 : participants.indexOf(userName);
-        if (index) {
+        if (index > -1) {
             participants === null || participants === void 0 ? void 0 : participants.splice(index, 1);
             io.emit('rooms', rooms);
         }

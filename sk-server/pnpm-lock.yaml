@@ -17,6 +17,9 @@ importers:
       '@prisma/client':
         specifier: 5.19.1
         version: 5.19.1(prisma@5.19.1)
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       peerjs:
         specifier: ^1.5.4
         version: 1.5.4
@@ -1645,6 +1648,10 @@ packages:
   dns-query@0.11.2:
     resolution: {integrity: sha512-zF8qxQpqCB467o4A63DLpQClo77H642JEKMx0Ra9GFww7Rx0234Fo8NoG0LBoSBZxamWkXfLxhzDG19bTBHvXQ==}
     hasBin: true
+
+  dotenv@16.4.5:
+    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+    engines: {node: '>=12'}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4677,6 +4684,8 @@ snapshots:
       '@leichtgewicht/dns-socket': 5.0.0
       '@leichtgewicht/ip-codec': 2.0.5
       utf8-codec: 1.0.0
+
+  dotenv@16.4.5: {}
 
   emoji-regex@8.0.0: {}
 

@@ -38,11 +38,11 @@ const rooms: Room[] = [
 ];
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
   io.emit('rooms', rooms);
 
   socket.on('new-room', (room) => {
     room.id = uid.rnd();
+    room.participants = [];
     rooms.push(room);
   });
   socket.on('join-room', (roomId, userName) => {
@@ -55,8 +55,8 @@ io.on('connection', (socket) => {
   socket.on('leave-room', (roomId, userName) => {
     socket.leave(roomId);
     const participants = rooms.find((room) => roomId == room.id)?.participants;
-    const index = participants?.indexOf(userName);
-    if (index) {
+    const index = participants?.indexOf(userName)!;
+    if (index > -1) {
       participants?.splice(index, 1);
       io.emit('rooms', rooms);
     }
