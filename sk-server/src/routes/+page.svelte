@@ -2,11 +2,10 @@
 	import { backendLink } from '$lib/config';
 	import { io } from 'socket.io-client';
 
-	interface Room {
-		id: string;
-		title: string;
-		participants: string[];
-	}
+	const { data } = $props();
+
+	import type { Room } from '../../../socket-server/src/index';
+
 	let allRooms: Room[] = $state([]);
 
 	const socket = io(backendLink);
@@ -20,11 +19,13 @@
 		<li>
 			<div>
 				{room.title}:
-				{#each room.participants as participant}
-					<a href={`/${participant}`}>{participant}</a>
+				{#each room.participants! as participant}
+					<a href={`/${participant.username}`}>{participant.nickname} ({participant.topicCount})</a>
 				{/each}
 			</div>
-			<a href="/room/{room.id}">Join</a>
+			{#if data.user}
+				<a href="/room/{room.id}">Join</a>
+			{/if}
 		</li>
 	{/each}
 </ul>

@@ -4,14 +4,10 @@
 	import { io } from 'socket.io-client';
 	import type { PageData } from './$types';
 	import { joinRoom } from 'trystero/torrent';
+	import type { Room } from '../../../../../socket-server/src/index';
 
 	let { data }: { data: PageData } = $props();
 
-	interface Room {
-		id: string;
-		title: string;
-		participants: string[];
-	}
 	const socket = io(backendLink);
 
 	let allRooms: Room[] = $state([]);
@@ -19,9 +15,13 @@
 
 	socket.on('rooms', (rooms) => (allRooms = rooms));
 
-	socket.emit('join-room', $page.params.room, data.user?.username);
+	socket.emit('join-room', $page.params.room, {
+		username: data.user?.username,
+		nickname: data.user?.profile?.nickname,
+		topicCount: data.topicCount
+	});
 	function handleClose() {
-		socket.emit('leave-room', $page.params.room, data.user?.username);
+		socket.emit('leave-room', $page.params.room, { username: data.user?.username });
 	}
 
 	$effect(() => {
@@ -54,6 +54,6 @@
 <h2>Participants:</h2>
 <ul>
 	{#each participants as participant}
-		<li><a href={`/${participant}`}>{participant}</a></li>
+		<li><a href={`/${participant.username}`}>{participant.nickname}</a></li>
 	{/each}
 </ul>

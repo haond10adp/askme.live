@@ -38,20 +38,21 @@ io.on('connection', (socket) => {
         room.participants = [];
         rooms.push(room);
     });
-    socket.on('join-room', (roomId, userName) => {
+    socket.on('join-room', (roomId, user) => {
         var _a;
         const participants = (_a = rooms.find((room) => roomId == room.id)) === null || _a === void 0 ? void 0 : _a.participants;
-        if (participants === null || participants === void 0 ? void 0 : participants.includes(userName))
+        if (participants === null || participants === void 0 ? void 0 : participants.some((participant) => participant.username == user.username)) {
             return;
+        }
         socket.join(roomId);
-        participants === null || participants === void 0 ? void 0 : participants.push(userName);
+        participants === null || participants === void 0 ? void 0 : participants.push(user);
         io.emit('rooms', rooms);
     });
-    socket.on('leave-room', (roomId, userName) => {
+    socket.on('leave-room', (roomId, user) => {
         var _a;
         socket.leave(roomId);
         const participants = (_a = rooms.find((room) => roomId == room.id)) === null || _a === void 0 ? void 0 : _a.participants;
-        const index = participants === null || participants === void 0 ? void 0 : participants.indexOf(userName);
+        const index = participants === null || participants === void 0 ? void 0 : participants.findIndex((participant) => participant.username == user.username);
         if (index > -1) {
             participants === null || participants === void 0 ? void 0 : participants.splice(index, 1);
             io.emit('rooms', rooms);

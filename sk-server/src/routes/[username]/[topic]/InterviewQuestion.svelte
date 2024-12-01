@@ -78,7 +78,9 @@
 		>
 	</form>
 {:else}
-	<p>{form?.question ?? question}</p>
+	<p>
+		{form?.question ?? question}
+	</p>
 
 	{#if data.user?.username == data.pathUser?.username}
 		<p>{form?.answer ?? answer}</p>

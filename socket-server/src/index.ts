@@ -22,10 +22,16 @@ const io = new Server(httpServer, {
 app.use(express.json());
 app.use(cors());
 
-interface Room {
+export interface Room {
   id: string;
   title: string;
-  participants?: string[];
+  participants?: Participant[];
+}
+
+interface Participant {
+  nickname: string;
+  username: string;
+  topicCount: number;
 }
 
 const uid = new ShortUniqueId({ length: 6 });
@@ -40,22 +46,28 @@ const rooms: Room[] = [
 io.on('connection', (socket) => {
   io.emit('rooms', rooms);
 
-  socket.on('new-room', (room) => {
+  socket.on('new-room', (room: Room) => {
     room.id = uid.rnd();
     room.participants = [];
     rooms.push(room);
   });
-  socket.on('join-room', (roomId, userName) => {
+  socket.on('join-room', (roomId: string, user: Participant) => {
     const participants = rooms.find((room) => roomId == room.id)?.participants;
-    if (participants?.includes(userName)) return;
+    if (
+      participants?.some((participant) => participant.username == user.username)
+    ) {
+      return;
+    }
     socket.join(roomId);
-    participants?.push(userName);
+    participants?.push(user);
     io.emit('rooms', rooms);
   });
-  socket.on('leave-room', (roomId, userName) => {
+  socket.on('leave-room', (roomId: string, user: Participant) => {
     socket.leave(roomId);
-    const participants = rooms.find((room) => roomId == room.id)?.participants;
-    const index = participants?.indexOf(userName)!;
+    const participants = rooms.find((room) => roomId == room.id)?.participants!;
+    const index = participants?.findIndex(
+      (participant) => participant.username == user.username
+    );
     if (index > -1) {
       participants?.splice(index, 1);
       io.emit('rooms', rooms);
