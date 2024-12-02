@@ -2,15 +2,13 @@
 	import { backendLink } from '$lib/socket';
 	import { io } from 'socket.io-client';
 	import type { Room } from '../../../socket-server/src/index';
+	import { afterNavigate, invalidateAll } from '$app/navigation';
 
 	const { data } = $props();
 	const socket = io(backendLink);
 
 	let allRooms: Room[] = $state([]);
-
-	$effect(() => {
-		socket.on('rooms', (rooms) => (allRooms = rooms));
-	});
+	socket.on('rooms', (rooms) => (allRooms = rooms));
 </script>
 
 {#if data.user}
