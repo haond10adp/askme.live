@@ -46,18 +46,18 @@ const rooms: Room[] = [
 
 const clearRoomInterval = 10000;
 
-setInterval(() => {
-  rooms.forEach((room) => {
-    if (room.participants?.length == 0) {
-      const index = rooms.indexOf(room);
-      setTimeout(() => {
-        if (room.title == 'testing') return;
-        rooms.splice(index, 1);
-        io.emit('rooms', rooms);
-      }, clearRoomInterval);
-    }
-  });
-}, clearRoomInterval);
+// setInterval(() => {
+//   rooms.forEach((room) => {
+//     if (room.participants?.length == 0) {
+//       const index = rooms.indexOf(room);
+//       setTimeout(() => {
+//         if (room.title == 'testing') return;
+//         rooms.splice(index, 1);
+//         io.emit('rooms', rooms);
+//       }, clearRoomInterval);
+//     }
+//   });
+// }, clearRoomInterval);
 
 io.on('connection', (socket) => {
   io.to(socket.id).emit('rooms', rooms);
