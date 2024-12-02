@@ -12,32 +12,69 @@
 </script>
 
 {#if data.user}
-	<h1>Hello {data.user.profile?.nickname}</h1>
+	<p class="welcome">Hello {data.user.profile?.nickname}</p>
 {/if}
 
-<h2>Public rooms</h2>
-<a href="/create">Create a room</a>
+<h2>
+	Public rooms
+	<a class="create" href="/create">+Create a room</a>
+</h2>
 <ul>
 	{#each allRooms as room}
 		<li>
 			<div>
-				{room.title}:
+				<h3>
+					{room.title}:
+				</h3>
 				{#each room.participants! as participant}
-					<a href={`/${participant.username}`}>{participant.nickname} ({participant.topicCount})</a>
+					<a href={`/${participant.username}`}>{participant.nickname} ({participant.topicCount})</a
+					><a href="">This is a very long</a><a href="">This is a very long</a>
 				{/each}
+				{#if data.user}
+					<p class="join">
+						<a href="/room/{room.id}" target="_blank">⇥ Take part in</a>
+					</p>
+				{/if}
 			</div>
-			{#if data.user}
-				<a href="/room/{room.id}">Join</a>
-			{/if}
 		</li>
 	{/each}
 </ul>
 
 <style>
-	ul li div a {
+	p.welcome {
+		font-size: 20px;
+	}
+	p.join {
+		/* text-align: right; */
+		text-decoration: underline dotted;
+		font-family: 'Poppins', sans-serif;
+		font-size: 20px;
+	}
+
+	div {
+		margin-top: 6px;
+	}
+	h3 {
+		font-size: 18px;
+		margin-bottom: 6px;
+	}
+	ul li div > a {
 		display: inline-block;
-		margin-left: 1em;
-		padding: 0.4em;
+		margin-right: 6px;
+		margin-bottom: 8px;
+		padding: 2px 10px;
 		border: 1px solid green;
+		border-radius: 16px;
+	}
+	h2 {
+		letter-spacing: 1px;
+		margin-top: 20px;
+		margin-bottom: 4px;
+	}
+	h2 a {
+		font-size: 18px;
+		text-decoration: underline;
+		font-family: 'Poppins', sans-serif;
+		letter-spacing: 0;
 	}
 </style>
