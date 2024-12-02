@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { backendLink } from '$lib/config';
-	import { io } from 'socket.io-client';
+	import { socket } from '$lib/socket';
 
-	const socket = io(backendLink);
 	let title = $state();
 	function submit(e: Event) {
 		e.preventDefault();

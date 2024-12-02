@@ -1,28 +1,20 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { backendLink } from '$lib/config';
-	import { io } from 'socket.io-client';
 	import type { PageData } from './$types';
+	import { socket } from '$lib/socket';
 	import { joinRoom } from 'trystero/torrent';
 	import type { Room } from '../../../../../socket-server/src/index';
 
 	let { data }: { data: PageData } = $props();
-
-	const socket = io(backendLink);
-
-	let allRooms: Room[] = $state([]);
-	let participants = $derived(allRooms.find((room) => room.id == $page.params.room)?.participants)!;
-
-	socket.on('rooms', (rooms) => (allRooms = rooms));
 
 	socket.emit('join-room', $page.params.room, {
 		username: data.user?.username,
 		nickname: data.user?.profile?.nickname,
 		topicCount: data.topicCount
 	});
-	function handleClose() {
-		socket.emit('leave-room', $page.params.room, { username: data.user?.username });
-	}
+	let allRooms: Room[] = $state([]);
+	let participants = $derived(allRooms.find((room) => room.id == $page.params.room)?.participants)!;
+	socket.on('rooms', (rooms) => (allRooms = rooms));
 
 	$effect(() => {
 		const peerAudios = {};
@@ -48,8 +40,6 @@
 		});
 	});
 </script>
-
-<svelte:window onbeforeunload={handleClose} />
 
 <h2>Participants:</h2>
 <ul>

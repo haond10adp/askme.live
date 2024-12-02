@@ -31,8 +31,23 @@ const rooms = [
         participants: [],
     },
 ];
+const clearRoomInterval = 10000;
+setInterval(() => {
+    rooms.forEach((room) => {
+        var _a;
+        if (((_a = room.participants) === null || _a === void 0 ? void 0 : _a.length) == 0) {
+            const index = rooms.indexOf(room);
+            setTimeout(() => {
+                if (room.title == 'testing')
+                    return;
+                rooms.splice(index, 1);
+                io.emit('rooms', rooms);
+            }, clearRoomInterval);
+        }
+    });
+}, clearRoomInterval);
 io.on('connection', (socket) => {
-    io.emit('rooms', rooms);
+    io.to(socket.id).emit('rooms', rooms);
     socket.on('new-room', (room) => {
         room.id = uid.rnd();
         room.participants = [];
@@ -45,19 +60,19 @@ io.on('connection', (socket) => {
             return;
         }
         socket.join(roomId);
+        user.socketId = socket.id;
         participants === null || participants === void 0 ? void 0 : participants.push(user);
         io.emit('rooms', rooms);
     });
-    socket.on('leave-room', (roomId, user) => {
-        var _a;
-        socket.leave(roomId);
-        const participants = (_a = rooms.find((room) => roomId == room.id)) === null || _a === void 0 ? void 0 : _a.participants;
-        const index = participants === null || participants === void 0 ? void 0 : participants.findIndex((participant) => participant.username == user.username);
-        if (index > -1) {
-            participants === null || participants === void 0 ? void 0 : participants.splice(index, 1);
-            io.emit('rooms', rooms);
-        }
-    });
+});
+io.of('/').adapter.on('leave-room', (roomId, socketId) => {
+    var _a;
+    const participants = (_a = rooms.find((room) => roomId == room.id)) === null || _a === void 0 ? void 0 : _a.participants;
+    const index = participants === null || participants === void 0 ? void 0 : participants.findIndex((participant) => participant.socketId == socketId);
+    if (index > -1) {
+        participants === null || participants === void 0 ? void 0 : participants.splice(index, 1);
+        io.emit('rooms', rooms);
+    }
 });
 httpServer.listen(3001, () => {
     console.log('listening on *:3001');
