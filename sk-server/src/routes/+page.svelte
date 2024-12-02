@@ -7,7 +7,10 @@
 	const socket = io(backendLink);
 
 	let allRooms: Room[] = $state([]);
-	socket.on('rooms', (rooms) => (allRooms = rooms));
+
+	$effect(() => {
+		socket.on('rooms', (rooms) => (allRooms = rooms));
+	});
 </script>
 
 {#if data.user}

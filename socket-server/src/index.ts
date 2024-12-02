@@ -60,7 +60,8 @@ setInterval(() => {
 }, clearRoomInterval);
 
 io.on('connection', (socket) => {
-  io.to(socket.id).emit('rooms', rooms);
+  // io.to(socket.id).emit('rooms', rooms);
+  io.emit('rooms', rooms);
 
   socket.on('new-room', (room: Room) => {
     room.id = uid.rnd();
