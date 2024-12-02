@@ -29,17 +29,23 @@
 </main>
 
 <style>
+	nav {
+		background-color: var(--color-primary-1);
+		margin-top: 0;
+	}
 	nav ul {
 		padding: 0 14px;
 		max-width: 960px;
 		margin: 0 auto;
 		display: flex;
-		margin-top: 10px;
 		align-items: baseline;
 	}
 
 	.push {
 		margin-left: auto;
+	}
+	nav ul li * {
+		color: white;
 	}
 	nav ul li:first-child {
 		font-family: 'Cherry Bomb One', system-ui;

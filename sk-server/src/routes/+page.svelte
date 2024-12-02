@@ -24,7 +24,7 @@
 		<li>
 			<div>
 				<h3>
-					{room.title}:
+					{room.title}
 				</h3>
 				{#each room.participants! as participant}
 					<a href={`/${participant.username}`}>{participant.nickname} ({participant.topicCount})</a
@@ -53,6 +53,7 @@
 
 	div {
 		margin-top: 6px;
+		margin-bottom: 10px;
 	}
 	h3 {
 		font-size: 18px;
