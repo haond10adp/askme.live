@@ -30,11 +30,11 @@
 
 <style>
 	nav {
-		background-color: var(--color-primary-1);
+		background-color: var(--color-primary-4);
 		margin-top: 0;
 	}
 	nav ul {
-		padding: 0 14px;
+		padding: 10px 14px;
 		max-width: 960px;
 		margin: 0 auto;
 		display: flex;

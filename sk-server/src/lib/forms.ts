@@ -1,6 +1,6 @@
 //Interview
 export interface InterviewCreate {
-	errors: InterviewError;
+	errors?: InterviewError;
 	question: string;
 	answer: string;
 	moreDetail: string;

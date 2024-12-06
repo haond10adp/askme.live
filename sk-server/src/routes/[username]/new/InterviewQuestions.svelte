@@ -45,34 +45,42 @@
 	}}
 >
 	<input type="hidden" name="topicName" value={topic.name} />
-	<input type="checkbox" name="isDouble" checked={topic.isDouble} hidden />
+	<input type="hidden" name="isDouble" checked={topic.isDouble} hidden />
 
-	<button
-		onclick={(event) => {
-			event.preventDefault();
-			document.getElementById('answer')?.focus();
-			if (index < topic.interviewQuestions!.length - 1) {
-				index++;
-				answer = '';
-				moreDetail = '';
-				hidden = true;
-			} else {
-				index = 0;
-			}
-		}}>Skip</button
-	>
-	<label>
-		<p>
-			Question {index + 1}/{topic.interviewQuestions.length}:
-			{#key index}
-				<span in:typewriter={{ speed: 5 }}>{topic.interviewQuestions[index]}</span>
-			{/key}
-		</p>
+	<div>
+		<span></span>
+		<div class="bt-group">
+			<button
+				onclick={(event) => {
+					event.preventDefault();
+					document.getElementById('answer')?.focus();
+					if (index < topic.interviewQuestions!.length - 1) {
+						index++;
+						answer = '';
+						moreDetail = '';
+						hidden = true;
+					} else {
+						index = 0;
+					}
+				}}
+				>Skip
+			</button>
+			<span class="number">{index + 1}/{topic.interviewQuestions.length}</span>
+		</div>
+	</div>
+	<div>
+		<span>Question</span>
+		{#key index}
+			<span class="question" in:typewriter={{ speed: 5 }}>{topic.interviewQuestions[index]}</span>
+		{/key}
 		<input type="hidden" name="question" value={topic.interviewQuestions[index]} />
-	</label>
+	</div>
 	{#if form?.errors?.question}
 		{#each form?.errors.question as error}
-			<p class="error" class:hidden>{error}</p>
+			<div class="error" class:hidden>
+				<span></span>
+				<p class="error">{error}</p>
+			</div>
 		{/each}
 	{/if}
 	<label>
@@ -81,30 +89,88 @@
 	</label>
 	{#if form?.errors?.answer}
 		{#each form?.errors.answer as error}
-			<p class="error" class:hidden>{error}</p>
+			<div class="error" class:hidden>
+				<span></span>
+				<p class="error">{error}</p>
+			</div>
 		{/each}
 	{/if}
 	<label>
-		<span>More detail</span>
+		<span class="detail">More detail</span>
 		<TextArea name="moreDetail" bind:value={moreDetail} minRows={3} maxRows={10} />
 	</label>
-	<br />
 	{#if form?.errors?.moreDetail}
 		{#each form?.errors.moreDetail as error}
-			<p class="error" class:hidden>{error}</p>
+			<div class="error" class:hidden>
+				<span></span>
+				<p class="error">{error}</p>
+			</div>
 		{/each}
 	{/if}
-
-	<button
-		type="submit"
-		onclick={() => {
-			hidden = false;
-		}}>Save</button
-	>
+	<div>
+		<span></span>
+		<div class="bt-group">
+			<button
+				type="submit"
+				onclick={() => {
+					hidden = false;
+				}}>Save</button
+			>
+		</div>
+	</div>
 </form>
 
 <style>
 	form {
-		margin-top: 1em;
+		display: table;
+	}
+
+	form label,
+	form > div {
+		display: table-row;
+	}
+
+	form span,
+	form input,
+	form .bt-group {
+		display: table-cell;
+		margin-bottom: 6px;
+	}
+
+	form input {
+		width: 94%;
+	}
+
+	form input,
+	form .bt-group,
+	form p,
+	form .question {
+		margin-left: 12px;
+	}
+	form .question {
+		display: inline-block;
+	}
+	form .number {
+		display: inline;
+	}
+
+	form p {
+		margin-bottom: 10px;
+	}
+
+	form .bt-group {
+		padding-left: 12px;
+		padding-top: 10px;
+		padding-bottom: 4px;
+	}
+
+	.detail {
+		width: 5ch;
+	}
+
+	button[type='submit'] {
+		margin-bottom: 10px;
+		display: block;
+		margin-top: -10px;
 	}
 </style>

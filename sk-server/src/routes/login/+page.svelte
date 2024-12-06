@@ -5,7 +5,7 @@
 	let { form }: { form: ActionData } = $props();
 </script>
 
-<h1>Log in</h1>
+<h2>Log in</h2>
 <form method="post" use:enhance>
 	<label>
 		<span>Username</span>
@@ -13,11 +13,17 @@
 	</label>
 	{#if form?.errors?.username}
 		{#each form.errors.username as error}
-			<p class="error">{error}</p>
+			<div class="error">
+				<span></span>
+				<p class="error">{error}</p>
+			</div>
 		{/each}
 	{/if}
 	{#if form?.usernameError}
-		<p class="error">{form.usernameError}</p>
+		<div class="error">
+			<span></span>
+			<p class="error">{form.usernameError}</p>
+		</div>
 	{/if}
 	<label>
 		<span>Password</span>
@@ -25,14 +31,61 @@
 	</label>
 	{#if form?.errors?.password}
 		{#each form.errors.password as error}
-			<p class="error">{error}</p>
+			<div class="error">
+				<span></span>
+				<p class="error">{error}</p>
+			</div>
 		{/each}
 	{/if}
 	{#if form?.passwordError}
-		<p class="error">{form.passwordError}</p>
+		<div class="error">
+			<span></span>
+			<p class="error">{form.passwordError}</p>
+		</div>
 	{/if}
-	<button type="submit">Submit</button>
+	<div>
+		<span></span>
+		<div class="bt-group">
+			<button type="submit">Log in</button>
+		</div>
+	</div>
 </form>
 
 <style>
+	h2 {
+		margin-top: 32px;
+		display: flex;
+		align-items: baseline;
+		margin-bottom: 10px;
+	}
+
+	form {
+		display: table;
+	}
+
+	form label,
+	form > div {
+		display: table-row;
+	}
+
+	form span,
+	form input,
+	form .bt-group {
+		display: table-cell;
+		margin-bottom: 6px;
+	}
+
+	form input,
+	form .bt-group,
+	form p {
+		margin-left: 12px;
+	}
+
+	form p {
+		margin-bottom: 10px;
+	}
+
+	form .bt-group {
+		padding-left: 12px;
+	}
 </style>

@@ -31,8 +31,9 @@
 	let isErrorHidden = $state(false);
 </script>
 
+<h2>Create a new topic</h2>
 <label>
-	<input type="checkbox" bind:checked={useTemplate} />
+	<input type="checkbox" bind:checked={useTemplate} disabled />
 	Use template
 </label>
 
@@ -98,9 +99,30 @@
 
 <style>
 	summary {
-		margin-top: 1em;
-		font-size: xx-large;
+		margin-top: 16;
+		font-size: 24px;
 		text-decoration: underline;
 		cursor: pointer;
+	}
+
+	form:first-of-type {
+		margin-top: 6px;
+	}
+
+	details:first-of-type {
+		margin-top: 16px;
+	}
+
+	h2 {
+		margin-top: 32px;
+	}
+
+	input[type='checkbox'] {
+		accent-color: var(--color-primary-4);
+		transform: scale(1.2);
+	}
+
+	h2 + label {
+		font-size: 20px;
 	}
 </style>

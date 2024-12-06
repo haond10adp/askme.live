@@ -2,7 +2,6 @@
 	import { backendLink } from '$lib/socket';
 	import { io } from 'socket.io-client';
 	import type { Room } from '../../../socket-server/src/index';
-	import { afterNavigate, invalidateAll } from '$app/navigation';
 
 	const { data } = $props();
 	const socket = io(backendLink);
@@ -12,7 +11,7 @@
 </script>
 
 {#if data.user}
-	<p class="welcome">Hello {data.user.profile?.nickname}</p>
+	<p class="welcome">Hello 👋 {data.user.profile?.nickname}</p>
 {/if}
 
 <h2>
@@ -43,9 +42,9 @@
 <style>
 	p.welcome {
 		font-size: 20px;
+		margin-top: 14px;
 	}
 	p.join {
-		/* text-align: right; */
 		text-decoration: underline dotted;
 		font-family: 'Poppins', sans-serif;
 		font-size: 20px;
@@ -64,7 +63,8 @@
 		margin-right: 6px;
 		margin-bottom: 8px;
 		padding: 2px 10px;
-		border: 1px solid green;
+		border: 2px solid var(--color-secondary-5);
+		color: var(--color-primary-5);
 		border-radius: 16px;
 	}
 	h2 {

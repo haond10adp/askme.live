@@ -21,7 +21,7 @@
 	let hidden = $state(false);
 </script>
 
-<p>{title}</p>
+<p class="title">{title}</p>
 <p>You should say:</p>
 <ul>
 	{#each ideas as idea}
@@ -61,22 +61,24 @@
 		>
 	</form>
 {:else if data.user?.username == data.pathUser?.username}
-	<p>{form?.note ?? note}</p>
-	<button
-		onclick={() => {
-			isEditing = true;
-			hidden = true;
-		}}>Edit</button
-	>
-	<form class="remove" action="?/removeSpeech" method="post" use:enhance>
-		<input type="hidden" name="id" value={id} />
+	<div class="indent">
+		<p>{form?.note ?? note}</p>
 		<button
-			onclick={(e) => {
-				const result = confirm('Are you sure you want to delete?');
-				if (!result) e.preventDefault();
-			}}>Remove</button
+			onclick={() => {
+				isEditing = true;
+				errors = undefined;
+			}}>Edit</button
 		>
-	</form>
+		<form class="remove" action="?/removeSpeech" method="post" use:enhance>
+			<input type="hidden" name="id" value={id} />
+			<button
+				onclick={(e) => {
+					const result = confirm('Are you sure you want to delete?');
+					if (!result) e.preventDefault();
+				}}>Remove</button
+			>
+		</form>
+	</div>
 {/if}
 
 <style>
@@ -90,5 +92,8 @@
 
 	ul li:last-of-type {
 		margin-left: -2em;
+	}
+	p.title {
+		font-weight: bold;
 	}
 </style>

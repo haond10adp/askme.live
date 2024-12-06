@@ -43,7 +43,10 @@
 		</label>
 		{#if errors?.question}
 			{#each errors.question as error}
-				<p class="error" class:hidden>{error}</p>
+				<div class="error" class:hidden>
+					<span></span>
+					<p class="error">{error}</p>
+				</div>
 			{/each}
 		{/if}
 		<label>
@@ -52,57 +55,108 @@
 		</label>
 		{#if errors?.answer}
 			{#each errors.answer as error}
-				<p class="error" class:hidden>{error}</p>
+				<div class="error" class:hidden>
+					<span></span>
+					<p class="error" class:hidden>{error}</p>
+				</div>
 			{/each}
 		{/if}
 		<label>
-			<span>More detail</span>
+			<span class="detail">More detail</span>
 			<!-- <textarea name="moreDetail">{form?.moreDetail ?? moreDetail}</textarea> -->
 			<TextArea name="moreDetail" value={form?.moreDetail ?? moreDetail} minRows={3} maxRows={10} />
 		</label>
 		{#if errors?.moreDetail}
 			{#each errors.moreDetail as error}
-				<p class="error" class:hidden>{error}</p>
+				<div class="error" class:hidden>
+					<span></span>
+					<p class="error">{error}</p>
+				</div>
 			{/each}
 		{/if}
-		<button
-			type="submit"
-			onclick={() => {
-				hidden = false;
-			}}>Save</button
-		>
-		<button
-			onclick={() => {
-				isEditing = false;
-			}}>Cancel</button
-		>
+		<div>
+			<span></span>
+			<div class="bt-group">
+				<button
+					type="submit"
+					onclick={() => {
+						hidden = false;
+					}}>Save</button
+				>
+				<button
+					onclick={() => {
+						isEditing = false;
+					}}>Cancel</button
+				>
+			</div>
+		</div>
 	</form>
 {:else}
 	<p>{form?.question ?? question}</p>
 
 	{#if data.user?.username == data.pathUser?.username}
-		<p>{form?.answer ?? answer}</p>
-		<p>{form?.moreDetail ?? moreDetail}</p>
-		<button
-			onclick={() => {
-				isEditing = true;
-				hidden = true;
-			}}>Edit</button
-		>
-		<form class="remove" action="?/removeGeneral" method="post" use:enhance>
-			<input type="hidden" name="id" value={id} />
+		<div class="indent">
+			<p>{form?.answer ?? answer}</p>
+			<p>{form?.moreDetail ?? moreDetail}</p>
 			<button
-				onclick={(e) => {
-					const result = confirm('Are you sure you want to delete?');
-					if (!result) e.preventDefault();
-				}}>Remove</button
+				onclick={() => {
+					isEditing = true;
+					errors = undefined;
+				}}>Edit</button
 			>
-		</form>
+			<form class="remove" action="?/removeGeneral" method="post" use:enhance>
+				<input type="hidden" name="id" value={id} />
+				<button
+					onclick={(e) => {
+						const result = confirm('Are you sure you want to delete?');
+						if (!result) e.preventDefault();
+					}}>Remove</button
+				>
+			</form>
+		</div>
 	{/if}
 {/if}
 
 <style>
 	form.remove {
 		display: inline-block;
+	}
+	form {
+		display: table;
+	}
+
+	form label,
+	form > div {
+		display: table-row;
+	}
+
+	form span,
+	form input,
+	form .bt-group {
+		display: table-cell;
+		margin-bottom: 6px;
+	}
+
+	form input {
+		width: 96%;
+	}
+
+	form input,
+	form .bt-group,
+	form p {
+		margin-left: 12px;
+	}
+
+	form p {
+		margin-bottom: 10px;
+	}
+
+	form .bt-group {
+		padding-left: 12px;
+		padding-bottom: 14px;
+	}
+
+	.detail {
+		width: 5ch;
 	}
 </style>

@@ -42,21 +42,25 @@
 >
 	<input type="hidden" name="topicName" value={topic.name} />
 	<input type="checkbox" name="isDouble" checked={topic.isDouble} hidden />
-	<button
-		onclick={(event) => {
-			event.preventDefault();
-			if (index < speeches.length - 1) {
-				index++;
-				note = '';
-				hidden = true;
-			} else {
-				index = 0;
-			}
-		}}>Skip</button
-	>
+	<div>
+		<button
+			onclick={(event) => {
+				event.preventDefault();
+				if (index < speeches.length - 1) {
+					index++;
+					note = '';
+					hidden = true;
+				} else {
+					index = 0;
+				}
+			}}
+			>Skip
+		</button>
+		<span>{index + 1}/{topic.interviewQuestions.length}</span>
+	</div>
 	<label>
 		<p>
-			Speech {index + 1}/{speeches.length}:
+			Speech
 			{#key index}
 				<span in:typewriter={{ speed: 5 }}>{speeches[index].title}</span>
 			{/key}
@@ -76,7 +80,6 @@
 		<span>Note</span>
 		<TextArea name="note" bind:value={note} minRows={4} maxRows={10} />
 	</label>
-	<br />
 	{#if form?.errors?.note}
 		{#each form?.errors.note as error}
 			<p class="error" class:hidden>{error}</p>

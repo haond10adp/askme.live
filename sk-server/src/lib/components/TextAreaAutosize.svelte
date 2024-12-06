@@ -22,7 +22,12 @@
 <style>
 	.container {
 		position: relative;
-		max-width: 60ch;
+		margin-left: 12px;
+		max-width: 50ch;
+	}
+
+	pre {
+		margin: 10px;
 	}
 
 	pre,
@@ -37,9 +42,18 @@
 
 	textarea {
 		position: absolute;
-		width: 100%;
+		width: 50ch;
 		height: 100%;
 		top: 0;
 		resize: none;
+	}
+
+	@media screen and (max-width: 500px) {
+		.container {
+			width: 75vw;
+		}
+		textarea {
+			width: 75vw;
+		}
 	}
 </style>

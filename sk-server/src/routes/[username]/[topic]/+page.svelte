@@ -26,7 +26,7 @@
 
 <h2>{data.topic?.name}</h2>
 
-<h2>Interview Questions</h2>
+<h3>Interview Questions</h3>
 <ul>
 	{#each data.topic.interviewQuestions as { id, question, answer, moreDetail } (id)}
 		<li animate:flip={{ duration: 500 }}>
@@ -43,7 +43,7 @@
 	{/each}
 </ul>
 
-<h2>Speeches</h2>
+<h3>Speeches</h3>
 <ul>
 	{#each data.topic.speeches as { id, title, ideas, note } (id)}
 		<li animate:flip={{ duration: 500 }}>
@@ -60,7 +60,7 @@
 	{/each}
 </ul>
 
-<h2>General Questions</h2>
+<h3>General Questions</h3>
 <ul>
 	{#each data.topic.generalQuestions as { id, question, answer, moreDetail } (id)}
 		<li animate:flip={{ duration: 500 }}>
@@ -78,11 +78,10 @@
 </ul>
 
 <style>
-	ul {
-		margin: 0;
-		padding: 0;
+	h2 {
+		margin-top: 32px;
 	}
-	li {
-		list-style-type: none;
+	h3 {
+		margin-top: 16px;
 	}
 </style>
