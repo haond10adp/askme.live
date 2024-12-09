@@ -11,7 +11,6 @@ const app = express();
 
 const httpsServer = https.createServer(credentials, app);
 
-const PORT = 80;
 const SSLPORT = 443;
 
 httpsServer.listen(SSLPORT, function () {
