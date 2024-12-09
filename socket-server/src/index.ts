@@ -44,7 +44,7 @@ const rooms: Room[] = [
   },
 ];
 
-const clearRoomInterval = 10000;
+const clearRoomInterval = 20000;
 
 setInterval(() => {
   rooms.forEach((room) => {

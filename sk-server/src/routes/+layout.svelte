@@ -28,6 +28,10 @@
 	{@render children()}
 </main>
 
+<footer>
+	<p>© 2024 | haond10adp@gmail.com</p>
+</footer>
+
 <style>
 	nav {
 		background-color: var(--color-primary-4);
@@ -70,5 +74,13 @@
 		max-width: 960px;
 		margin: 0 auto;
 		padding: 0 14px;
+		min-height: 100vh;
+	}
+
+	footer p {
+		text-align: center;
+		margin-top: 30vh;
+		padding: 16px;
+		font-size: 18px;
 	}
 </style>

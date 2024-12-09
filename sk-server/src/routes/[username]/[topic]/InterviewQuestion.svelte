@@ -173,4 +173,9 @@
 	.detail {
 		width: 5ch;
 	}
+
+	input[name='answer'] {
+		font-family: 'Pacifico', cursive;
+		font-size: 20px;
+	}
 </style>

@@ -23,7 +23,7 @@
 	.container {
 		position: relative;
 		margin-left: 12px;
-		max-width: 50ch;
+		width: 550px;
 	}
 
 	pre {
@@ -32,7 +32,7 @@
 
 	pre,
 	textarea {
-		font-family: inherit;
+		font-family: 'Pacifico', cursive;
 		padding: 0.5em;
 		box-sizing: border-box;
 		border: 1px solid grey;
@@ -42,7 +42,7 @@
 
 	textarea {
 		position: absolute;
-		width: 50ch;
+		width: 550px;
 		height: 100%;
 		top: 0;
 		resize: none;

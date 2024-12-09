@@ -53,7 +53,8 @@
 			<button
 				onclick={(event) => {
 					event.preventDefault();
-					document.getElementById('answer')?.focus();
+					const answerInput = document.getElementsByClassName('answer')[1] as HTMLInputElement;
+					answerInput.focus();
 					if (index < topic.generalQuestions!.length - 1) {
 						index++;
 						answer = '';
@@ -84,7 +85,7 @@
 	{/if}
 	<label>
 		<span>Answer</span>
-		<input type="text" name="answer" id="answer" bind:value={answer} size="40" />
+		<input type="text" name="answer" id="answer" class="answer" bind:value={answer} size="40" />
 	</label>
 	{#if form?.errors?.answer}
 		{#each form?.errors.answer as error}
@@ -149,6 +150,7 @@
 	}
 	form .question {
 		display: inline-block;
+		font-weight: bold;
 	}
 	form .number {
 		display: inline;
@@ -172,5 +174,10 @@
 		margin-bottom: 10px;
 		display: block;
 		margin-top: -10px;
+	}
+
+	input {
+		font-family: 'Pacifico', cursive;
+		font-size: 20px;
 	}
 </style>

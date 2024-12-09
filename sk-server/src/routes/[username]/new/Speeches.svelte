@@ -56,11 +56,10 @@
 			}}
 			>Skip
 		</button>
-		<span>{index + 1}/{topic.interviewQuestions.length}</span>
+		<span>{index + 1}/{topic.speeches.length}</span>
 	</div>
 	<label>
 		<p>
-			Speech
 			{#key index}
 				<span in:typewriter={{ speed: 5 }}>{speeches[index].title}</span>
 			{/key}
@@ -77,7 +76,7 @@
 		</ul>
 	</label>
 	<label>
-		<span>Note</span>
+		<span></span>
 		<TextArea name="note" bind:value={note} minRows={4} maxRows={10} />
 	</label>
 	{#if form?.errors?.note}
@@ -104,5 +103,8 @@
 
 	ul li:last-of-type {
 		margin-left: -2em;
+	}
+	label p span {
+		font-weight: bold;
 	}
 </style>

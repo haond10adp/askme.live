@@ -35,6 +35,11 @@
 <label>
 	<input type="checkbox" bind:checked={useTemplate} disabled />
 	Use template
+	<span
+		>( <a href="https://shop.alphabooks.vn/hackers-ielts-speaking-p39062558.html" target="_blank"
+			>Hackers IELTS Speaking</a
+		> book)</span
+	>
 </label>
 
 {#if useTemplate}
@@ -103,6 +108,7 @@
 		font-size: 24px;
 		text-decoration: underline;
 		cursor: pointer;
+		color: var(--color-primary-5);
 	}
 
 	form:first-of-type {
@@ -123,6 +129,25 @@
 	}
 
 	h2 + label {
+		font-size: 20px;
+	}
+
+	h2 + label span a {
+		font-family: 'Poppins', sans-serif;
+		color: orangered;
+		font-weight: bold;
+	}
+
+	@media screen and (max-width: 500px) {
+		h2 + label {
+			font-size: 16px;
+		}
+		h2 + label span {
+			letter-spacing: -1px;
+		}
+	}
+	input {
+		font-family: 'Pacifico', cursive;
 		font-size: 20px;
 	}
 </style>

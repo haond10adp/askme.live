@@ -26,8 +26,7 @@
 					{room.title}
 				</h3>
 				{#each room.participants! as participant}
-					<a href={`/${participant.username}`}>{participant.nickname} ({participant.topicCount})</a
-					><a href="">This is a very long</a><a href="">This is a very long</a>
+					<a href={`/${participant.username}`}>{participant.nickname} ({participant.topicCount})</a>
 				{/each}
 				{#if data.user}
 					<p class="join">
@@ -66,6 +65,10 @@
 		border: 2px solid var(--color-secondary-5);
 		color: var(--color-primary-5);
 		border-radius: 16px;
+	}
+
+	li {
+		margin-bottom: 20px;
 	}
 	h2 {
 		letter-spacing: 1px;

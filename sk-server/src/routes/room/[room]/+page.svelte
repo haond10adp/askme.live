@@ -47,3 +47,20 @@
 		<li><a href={`/${participant.username}`}>{participant.nickname}</a></li>
 	{/each}
 </ul>
+
+<style>
+	h2 {
+		margin-top: 32px;
+		margin-bottom: 10px;
+	}
+
+	ul li a {
+		display: inline-block;
+		margin-right: 6px;
+		margin-bottom: 8px;
+		padding: 2px 10px;
+		border: 2px solid var(--color-secondary-5);
+		color: var(--color-primary-5);
+		border-radius: 16px;
+	}
+</style>
