@@ -8,7 +8,7 @@ export default defineConfig({
 			key: fs.readFileSync('../.cert/private.key'),
 			cert: fs.readFileSync('../.cert/certificate.crt')
 		},
-		port: 80
+		port: 443
 	},
 	plugins: [sveltekit()]
 });
