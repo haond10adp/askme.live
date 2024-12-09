@@ -8,6 +8,7 @@ import fs from 'node:fs';
 const options = {
   key: fs.readFileSync('./../.cert/private.key'),
   cert: fs.readFileSync('./../.cert/certificate.crt'),
+  ca: fs.readFileSync('./../.cert/rootca.crt'),
 };
 
 const app = express();

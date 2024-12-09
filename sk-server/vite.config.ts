@@ -6,7 +6,8 @@ export default defineConfig({
 	server: {
 		https: {
 			key: fs.readFileSync('../.cert/private.key'),
-			cert: fs.readFileSync('../.cert/certificate.crt')
+			cert: fs.readFileSync('../.cert/certificate.crt'),
+			ca: fs.readFileSync('../.cert/rootca.crt')
 		},
 		port: 443
 	},
