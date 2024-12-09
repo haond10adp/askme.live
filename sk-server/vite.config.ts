@@ -8,8 +8,8 @@ export default defineConfig({
 			key: fs.readFileSync('../.cert/private.pem'),
 			cert: fs.readFileSync('../.cert/certificate.pem')
 			// ca: fs.readFileSync('../.cert/rootca.pem')
-		},
-		port: 443
+		}
+		// port: 443
 	},
 	plugins: [sveltekit()]
 });
