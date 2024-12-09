@@ -79,18 +79,17 @@ io.on('connection', (socket) => {
     user.socketId = socket.id;
     participants?.push(user);
     io.emit('rooms', rooms);
+  });
 
-    socket.on('leave-room', (roomId, socketId) => {
-      const participants = rooms.find((room) => roomId == room.id)
-        ?.participants!;
-      const index = participants?.findIndex(
-        (participant) => participant.socketId == socketId
-      );
-      if (index > -1) {
-        participants?.splice(index, 1);
-        io.emit('rooms', rooms);
-      }
-    });
+  socket.on('leave-room', (roomId, socketId) => {
+    const participants = rooms.find((room) => roomId == room.id)?.participants!;
+    const index = participants?.findIndex(
+      (participant) => participant.socketId == socketId
+    );
+    if (index > -1) {
+      participants?.splice(index, 1);
+      io.emit('rooms', rooms);
+    }
   });
 });
 
