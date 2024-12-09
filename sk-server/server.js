@@ -2,16 +2,18 @@ import { handler } from './build/handler.js';
 import express from 'express';
 import fs from 'fs';
 import https from 'https';
+import cors from 'cors';
 
 const privateKey = fs.readFileSync('../.cert/private.pem', 'utf8');
 const certificate = fs.readFileSync('../.cert/certificate.pem', 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
 const app = express();
+app.use(cors());
 
 const httpsServer = https.createServer(credentials, app);
 
-const SSLPORT = 443;
+const SSLPORT = 8080;
 
 httpsServer.listen(SSLPORT, function () {
 	console.log('HTTPS Server is running on: https://localhost:%s', SSLPORT);

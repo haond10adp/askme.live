@@ -12,13 +12,12 @@ const node_fs_1 = __importDefault(require("node:fs"));
 const options = {
     key: node_fs_1.default.readFileSync('./../.cert/private.pem'),
     cert: node_fs_1.default.readFileSync('./../.cert/certificate.pem'),
-    ca: node_fs_1.default.readFileSync('./../.cert/rootca.pem'),
 };
 const app = (0, express_1.default)();
 const httpsServer = (0, node_https_1.createServer)(options, app);
 const io = new socket_io_1.Server(httpsServer, {
     cors: {
-        origin: 'https://askmelive.site',
+        origin: '*',
         methods: ['GET', 'POST'],
     },
 });
@@ -66,7 +65,7 @@ io.on('connection', (socket) => {
         io.emit('rooms', rooms);
     });
 });
-io.on('leave-room', (roomId, socketId) => {
+io.of('/').adapter.on('leave-room', (roomId, socketId) => {
     var _a;
     const participants = (_a = rooms.find((room) => roomId == room.id)) === null || _a === void 0 ? void 0 : _a.participants;
     const index = participants === null || participants === void 0 ? void 0 : participants.findIndex((participant) => participant.socketId == socketId);
