@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'sk-server',
-      script: './sk-server/server.js',
+      script: 'node ./sk-server/server.js',
       env: {
         PORT: 443,
         NODE_ENV: 'development',
@@ -13,7 +13,7 @@ module.exports = {
     },
     {
       name: 'socket-server',
-      script: './socket-server/dist/index.js',
+      script: 'node ./socket-server/dist/index.js',
     },
   ],
 };
