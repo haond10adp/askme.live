@@ -12,10 +12,10 @@ const options = {
 };
 
 const app = express();
-const httpServer = createServer(options, app);
-const io = new Server(httpServer, {
+const httpsServer = createServer(options, app);
+const io = new Server(httpsServer, {
   cors: {
-    origin: '*',
+    origin: 'https://askmelive.site',
     methods: ['GET', 'POST'],
   },
 });
@@ -82,7 +82,7 @@ io.on('connection', (socket) => {
   });
 });
 
-io.of('/').adapter.on('leave-room', (roomId, socketId) => {
+io.on('leave-room', (roomId, socketId) => {
   const participants = rooms.find((room) => roomId == room.id)?.participants!;
   const index = participants?.findIndex(
     (participant) => participant.socketId == socketId
@@ -93,6 +93,6 @@ io.of('/').adapter.on('leave-room', (roomId, socketId) => {
   }
 });
 
-httpServer.listen(3001, () => {
+httpsServer.listen(3001, () => {
   console.log('listening on *:3001');
 });
