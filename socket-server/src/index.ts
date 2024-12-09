@@ -8,7 +8,6 @@ import fs from 'node:fs';
 const options = {
   key: fs.readFileSync('./../.cert/private.pem'),
   cert: fs.readFileSync('./../.cert/certificate.pem'),
-  ca: fs.readFileSync('./../.cert/rootca.pem'),
 };
 
 const app = express();
@@ -80,20 +79,9 @@ io.on('connection', (socket) => {
     participants?.push(user);
     io.emit('rooms', rooms);
   });
-
-  socket.on('leave-room', (roomId, socketId) => {
-    const participants = rooms.find((room) => roomId == room.id)?.participants!;
-    const index = participants?.findIndex(
-      (participant) => participant.socketId == socketId
-    );
-    if (index > -1) {
-      participants?.splice(index, 1);
-      io.emit('rooms', rooms);
-    }
-  });
 });
 
-io.on('leave-room', (roomId, socketId) => {
+io.of('/').adapter.on('leave-room', (roomId, socketId) => {
   const participants = rooms.find((room) => roomId == room.id)?.participants!;
   const index = participants?.findIndex(
     (participant) => participant.socketId == socketId
