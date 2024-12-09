@@ -6,9 +6,9 @@ import ShortUniqueId from 'short-unique-id';
 import fs from 'node:fs';
 
 const options = {
-  key: fs.readFileSync('./../.cert/private.key'),
-  cert: fs.readFileSync('./../.cert/certificate.crt'),
-  ca: fs.readFileSync('./../.cert/rootca.crt'),
+  key: fs.readFileSync('./../.cert/private.pem'),
+  cert: fs.readFileSync('./../.cert/certificate.pem'),
+  ca: fs.readFileSync('./../.cert/rootca.pem'),
 };
 
 const app = express();
