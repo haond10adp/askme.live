@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'sk-server',
-      script: './sk-server/build/ --node-args="--env-file=.env',
+      script: './sk-server/build/ --node-args="--env-file=.env"',
       env: {
         PORT: 443,
         NODE_ENV: 'development',
