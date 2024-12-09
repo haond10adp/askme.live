@@ -13,7 +13,7 @@ app.use(cors());
 
 const httpsServer = https.createServer(credentials, app);
 
-const SSLPORT = 8080;
+const SSLPORT = 443;
 
 httpsServer.listen(SSLPORT, function () {
 	console.log('HTTPS Server is running on: https://localhost:%s', SSLPORT);
