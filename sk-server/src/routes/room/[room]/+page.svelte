@@ -44,7 +44,7 @@
 <h2>Participants:</h2>
 <ul>
 	{#each participants as participant}
-		<li><a href={`/${participant.username}`}>{participant.nickname}</a></li>
+		<li><a href={`/${participant.username}`} target="_blank">{participant.nickname}</a></li>
 	{/each}
 </ul>
 
