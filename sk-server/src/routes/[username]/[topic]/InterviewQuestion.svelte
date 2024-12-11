@@ -173,4 +173,7 @@
 		font-family: 'Pacifico', cursive;
 		font-size: 20px;
 	}
+	p {
+		white-space: pre-line;
+	}
 </style>
