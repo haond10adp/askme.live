@@ -98,8 +98,12 @@ button:hover {
   color: var(--color-primary-5)
 }
 
-.indent p::before {
+.indent p:first-child::before {
   content: '↪';
+}
+
+.indent p:nth-child(2){
+  margin-left: 16px;
 }
 
 p:has(+ .indent)  {
