@@ -98,6 +98,14 @@ button:hover {
   color: var(--color-primary-5)
 }
 
+.indent button{
+  margin-left: 16px;
+}
+
+.indent form button{
+  margin-left: 0;
+}
+
 .indent p:first-child::before {
   content: '↪';
 }
