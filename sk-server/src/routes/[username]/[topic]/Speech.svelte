@@ -96,4 +96,7 @@
 	p.title {
 		font-weight: bold;
 	}
+	p {
+		white-space: pre-line;
+	}
 </style>
