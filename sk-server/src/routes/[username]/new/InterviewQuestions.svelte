@@ -86,7 +86,19 @@
 	{/if}
 	<label>
 		<span>Answer</span>
-		<input type="text" name="answer" id="answer" class="answer" bind:value={answer} size="40" />
+		<input
+			type="text"
+			name="answer"
+			id="answer"
+			class="answer"
+			bind:value={answer}
+			size="40"
+			onkeydown={(event) => {
+				if (event.key == 'Enter') {
+					event.preventDefault();
+				}
+			}}
+		/>
 	</label>
 	{#if form?.errors?.answer}
 		{#each form?.errors.answer as error}

@@ -34,12 +34,7 @@
 		<input type="hidden" name="id" value={form?.id ?? id} />
 		<label>
 			<span>Question</span>
-			<input
-				type="text"
-				name="question"
-				value={form?.question ?? question}
-				size={question.length}
-			/>
+			<input type="text" name="question" value={form?.question ?? question} />
 		</label>
 		{#if errors?.question}
 			{#each errors.question as error}

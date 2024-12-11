@@ -164,7 +164,7 @@ export const actions: Actions = {
 				name: topicName,
 				isDouble,
 				userId: locals.user.id,
-				interviewQuestions: {
+				generalQuestions: {
 					create: {
 						question,
 						answer,
@@ -173,7 +173,7 @@ export const actions: Actions = {
 				}
 			},
 			update: {
-				interviewQuestions: {
+				generalQuestions: {
 					create: {
 						question,
 						answer,

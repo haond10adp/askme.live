@@ -23,7 +23,7 @@
 	.container {
 		position: relative;
 		margin-left: 12px;
-		width: 550px;
+		width: 650px;
 	}
 
 	pre {
@@ -42,7 +42,7 @@
 
 	textarea {
 		position: absolute;
-		width: 550px;
+		width: 650px;
 		height: 100%;
 		top: 0;
 		resize: none;

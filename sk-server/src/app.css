@@ -36,7 +36,7 @@ input {
   font-size: inherit;
   font-family: 'Playfair Display', sans-serif;
   outline: none;
-  max-width: 50ch;
+  max-width: 650px;
   border: 1px solid var(--color-primary-4);
 }
 
@@ -51,7 +51,6 @@ select {
 textarea {
   font-size: inherit;
   font-family: 'Pacifico', cursive;
-  width: 50ch;
   height: 6ch;
 }
 
