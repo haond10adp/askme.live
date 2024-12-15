@@ -10,6 +10,14 @@
 	socket.on('rooms', (rooms) => (allRooms = rooms));
 </script>
 
+<svelte:head>
+	<meta
+		name="description"
+		content="Luyện nói tiếng Anh theo chủ đề IELTS và nhiều hơn nữa | Practcing English by IELTS topics and more... "
+	/>
+	<title>Phòng tập nói tiếng Anh</title>
+</svelte:head>
+
 {#if data.user}
 	<p class="welcome">Hello 👋 {data.user.profile?.nickname}</p>
 {/if}

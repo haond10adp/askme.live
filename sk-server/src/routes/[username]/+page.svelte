@@ -7,6 +7,10 @@
 	let isUserInfoEditing = $state(false);
 </script>
 
+<svelte:head>
+	<title>{pathUser.username}</title>
+</svelte:head>
+
 <h2>
 	User Info
 	{#if user?.username == pathUser.username}

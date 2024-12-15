@@ -14,6 +14,8 @@
 	});
 	let allRooms: Room[] = $state([]);
 	let participants = $derived(allRooms.find((room) => room.id == $page.params.room)?.participants)!;
+
+	let roomTitle = $derived(allRooms.find((room) => room.id == $page.params.room)?.title)!;
 	socket.on('rooms', (rooms) => (allRooms = rooms));
 
 	$effect(() => {
@@ -40,6 +42,10 @@
 		});
 	});
 </script>
+
+<svelte:head>
+	<title>Room | {roomTitle}</title>
+</svelte:head>
 
 <h2>Participants:</h2>
 <ul>

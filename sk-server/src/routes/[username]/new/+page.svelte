@@ -31,6 +31,10 @@
 	let isErrorHidden = $state(false);
 </script>
 
+<svelte:head>
+	<title>Create a new topic</title>
+</svelte:head>
+
 <h2>Create a new topic</h2>
 <label>
 	<input type="checkbox" bind:checked={useTemplate} disabled />

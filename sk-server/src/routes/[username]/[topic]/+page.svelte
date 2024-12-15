@@ -24,6 +24,10 @@
 	let currentGeneralErrors = $derived(form?.general?.errors);
 </script>
 
+<svelte:head>
+	<title>{data.pathUser.username} | {data.topic.name}</title>
+</svelte:head>
+
 <h2>{data.topic?.name}</h2>
 
 <h3>Interview Questions</h3>

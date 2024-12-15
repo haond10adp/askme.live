@@ -5,6 +5,10 @@
 	let { form }: { form: ActionData } = $props();
 </script>
 
+<svelte:head>
+	<title>Sign up</title>
+</svelte:head>
+
 <h2>Sign up</h2>
 <form method="post" use:enhance>
 	<label>

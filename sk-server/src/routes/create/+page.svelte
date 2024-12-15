@@ -15,6 +15,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Create a new room</title>
+</svelte:head>
+
 <form onsubmit={submit}>
 	<h2>Create a room</h2>
 	<div class="input-wrapper">
