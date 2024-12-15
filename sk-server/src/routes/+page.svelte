@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>Phòng tập nói tiếng Anh</title>
+	<title>AskMeLive - Phòng tập nói tiếng Anh theo chủ đề</title>
 </svelte:head>
 
 {#if data.user}
